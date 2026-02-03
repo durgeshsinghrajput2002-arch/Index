@@ -1,30 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Love Letter 💌</title>
-  <link rel="stylesheet" href="loveletter.css" />
+  <meta charset="UTF-8">
+  <title>Love Letter 💌</title>
+  <link rel="stylesheet" href="loveletter.css">
 </head>
-
 <body>
+
   <div class="container">
-    <h1>My Love 💖</h1>
+    <div id="envelope" class="close">
+      
+      <div class="front flap"></div>
+      <div class="front pocket"></div>
 
-    <p style="font-size: 18px; line-height: 1.6;">
-      From the moment you came into my life,  
-      everything became brighter and warmer.  
-      Your smile is my favorite view,  
-      your happiness is my biggest goal.  
-      <br><br>
-      No matter what happens,  
-      I want to stand by you — always.  
-      <br><br>
-      This is not just a proposal,  
-      this is my promise 💍❤️
-    </p>
+      <div class="letter">
+        <div class="words line1">To My Love ❤️</div>
+        <div class="words line2">
+          Every time I see you,<br>
+          my world stops.
+        </div>
+        <div class="words line3">
+          You make my heart smile.
+        </div>
+        <div class="words line4">
+          Will you be mine? 💖
+        </div>
+      </div>
 
-    <h2>Forever Yours 💞</h2>
+    </div>
+
+    <div class="buttons">
+      <button onclick="openEnvelope()">OPEN</button>
+      <button onclick="closeEnvelope()">CLOSE</button>
+    </div>
   </div>
+
+  <script>
+    const envelope = document.getElementById("envelope");
+
+    function openEnvelope() {
+      envelope.classList.remove("close");
+      envelope.classList.add("open");
+    }
+
+    function closeEnvelope() {
+      envelope.classList.remove("open");
+      envelope.classList.add("close");
+    }
+  </script>
+
 </body>
 </html>
