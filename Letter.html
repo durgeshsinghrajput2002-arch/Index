@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Love Letter 💌</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <div id="envelope" class="close">
+      
+      <div class="front flap"></div>
+      <div class="front pocket"></div>
+
+      <div class="letter">
+        <div class="words line1">To My Love ❤️</div>
+        <div class="words line2">
+          Every time I see you,<br>
+          my world stops.
+        </div>
+        <div class="words line3">
+          You make my heart smile.
+        </div>
+        <div class="words line4">
+          Will you be mine? 💖
+        </div>
+      </div>
+
+    </div>
+
+    <div class="buttons">
+      <button onclick="openEnvelope()">OPEN</button>
+      <button onclick="closeEnvelope()">CLOSE</button>
+    </div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById("envelope");
+
+    function openEnvelope() {
+      envelope.classList.remove("close");
+      envelope.classList.add("open");
+    }
+
+    function closeEnvelope() {
+      envelope.classList.remove("open");
+      envelope.classList.add("close");
+    }
+  </script>
+
+</body>
+</html>
+
+* {
+  box-sizing: border-box;
+  font-family: "Georgia", serif;
+}
+
+body {
+  background: #fdecef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+/* Envelope */
+#envelope {
+  position: relative;
+  width: 280px;
+  height: 180px;
+  margin: auto;
+}
+
+/* Front parts */
+.front {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 3;
+}
+
+.pocket {
+  border-left: 140px solid #ff8fa3;
+  border-right: 140px solid #ff8fa3;
+  border-bottom: 90px solid #ff5d73;
+  top: 90px;
+}
+
+.flap {
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-bottom: 90px solid #ff5d73;
+  top: 0;
+  transform-origin: top;
+  transition: transform 0.6s;
+}
+
+/* Letter */
+.letter {
+  position: absolute;
+  background: #fff;
+  width: 250px;
+  height: 160px;
+  top: 10px;
+  left: 15px;
+  padding: 15px;
+  z-index: 1;
+  transition: transform 0.6s;
+}
+
+.words {
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+/* Buttons */
+.buttons {
+  margin-top: 25px;
+}
+
+button {
+  padding: 8px 20px;
+  margin: 0 5px;
+  border: 2px solid #ff5d73;
+  background: white;
+  color: #ff5d73;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Animations */
+#envelope.open .flap {
+  transform: rotateX(180deg);
+}
+
+#envelope.open .letter {
+  transform: translateY(-80px);
+}
+
+#envelope.close .letter {
+  transform: translateY(0);
+}
