@@ -19,9 +19,9 @@ body {
 #envelope {
   position: relative;
   width: 280px;
-  height: 180px;
+  height: 200px;
   margin: auto;
-  perspective: 800px
+  perspective: 80ppx
 }
 
 /* Front parts */
@@ -35,18 +35,18 @@ body {
 .pocket {
   border-left: 140px solid #ff8fa3;
   border-right: 140px solid #ff8fa3;
-  border-bottom: 90px solid #ff5d73;
-  top: 90px;
+  border-bottom: 100px solid #ff5d73;
+  top: 100px;
   Z-index: 2
 }
 
 .flap {
   border-left: 140px solid transparent;
   border-right: 140px solid transparent;
-  border-bottom: 90px solid #ff5d73;
+  border-bottom: 110px solid #ff5d73; /* taller flap */
   top: 0;
   transform-origin: top;
-  transition: transform 0.6s;
+  transition: transform 0.7s ease-out;
   backface-visibility: hidden;
   Z-index: 4
 }
@@ -57,11 +57,11 @@ body {
   background: #fff;
   width: 250px;
   height: 160px;
-  top: 10px;
+  top: 25px;
   left: 15px;
   padding: 15px;
   z-index: 1;
-  transition: transform 0.6s;
+  transition: transform 0.7s ease;
 }
 
 .words {
@@ -87,11 +87,12 @@ button {
 /* Animations */
 #envelope.open .flap {
   transform: rotateX(180deg);
+  Z-index: 0;
 }
 
 #envelope.open .letter {
   transform: translateY(-90px);
-  transition-delay: 0.3s;
+  transition-delay: 0.25s;
 }
 
 #envelope.close .letter {
