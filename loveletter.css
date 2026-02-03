@@ -44,26 +44,32 @@ body {
 }
 
 .flap {
-  border-left: 140px solid transparent;
-  border-right: 140px solid transparent;
-  border-bottom: 110px solid #ff5d73; /* taller flap */
+  position: absolute;
   top: 0;
-  transform: rotateX(0deg);   /* CLOSED state */
-  transform-origin: top;
-  transition: transform 0.7s ease-out;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-bottom: 100px solid #ff5d73;
+
+  transform-origin: top center;
+  transform: rotateX(0deg);
   backface-visibility: hidden;
-  Z-index: 4
+
+  transition: transform 0.7s ease;
+  z-index: 3;
 }
 
 /* Letter */
 .letter {
   position: absolute;
-  background: #fff;
-  width: 250px;
+  width: 260px;
   height: 160px;
-  top: 25px;
-  left: 15px;
+  left: 20px;
+  top: 30px;
+  background: white;
   padding: 15px;
+
   z-index: 1;
   transition: transform 0.7s ease;
 }
