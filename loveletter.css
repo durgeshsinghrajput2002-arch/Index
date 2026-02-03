@@ -18,10 +18,10 @@ body {
 /* Envelope */
 #envelope {
   position: relative;
-  width: 280px;
+  width: 300px;
   height: 200px;
   margin: auto;
-  perspective: 80ppx
+  perspective: 900px
 }
 
 /* Front parts */
@@ -33,10 +33,13 @@ body {
 }
 
 .pocket {
-  border-left: 140px solid #ff8fa3;
-  border-right: 140px solid #ff8fa3;
-  border-bottom: 100px solid #ff5d73;
-  top: 100px;
+  position: absolute; 
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 150px solid #ff8fa3;
+  border-right: 150px solid #ff8fa3;
+  border-top: 100px solid #ff5d73;
   Z-index: 2
 }
 
@@ -45,6 +48,7 @@ body {
   border-right: 140px solid transparent;
   border-bottom: 110px solid #ff5d73; /* taller flap */
   top: 0;
+  transform: rotateX(0deg);   /* CLOSED state */
   transform-origin: top;
   transition: transform 0.7s ease-out;
   backface-visibility: hidden;
