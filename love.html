@@ -1,53 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Love Letter 💌</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Envelope Surprise</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-  <div id="envelope" class="close">
-
-    <div class="back"></div>
-
-    <div class="letter">
-      <h3>To My Love ❤️</h3>
-      <p>
-        Every time I see you,<br>
-        my world stops.<br><br>
-        You make my heart smile.<br><br>
-        Will you be mine? 💖
-      </p>
+<div class="envelope-container">
+  <div class="envelope" id="env">
+    <div class="flap"></div>
+    <div class="body">
+      <div class="letter" id="letter">
+        💖 Surprise! I ❤️ You 💖
+      </div>
     </div>
-
-    <div class="front left-flap"></div>
-    <div class="front right-flap"></div>
-    <div class="front bottom-flap"></div>
-    <div class="front top-flap"></div>
-
-  </div>
-
-  <div class="buttons">
-    <button onclick="openEnvelope()">OPEN</button>
-    <button onclick="closeEnvelope()">CLOSE</button>
   </div>
 </div>
 
-<script>
-  const envelope = document.getElementById("envelope");
-
-  function openEnvelope() {
-    envelope.classList.remove("close");
-    envelope.classList.add("open");
-  }
-
-  function closeEnvelope() {
-    envelope.classList.remove("open");
-    envelope.classList.add("close");
-  }
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
