@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter Animation</title>
+    <title>For You 💗</title>
     <style>
         :root {
             --bg-color: #ffe6eb;
-            --envelope-color: #ffc3c3; /* Pastel Pink */
+            --envelope-color: #ffc3c3;
             --envelope-shadow: #ffb3b3;
             --flap-color: #ffcfcf;
             --heart-color: #ff8fa3;
             --letter-color: #ffffff;
-            --text-color: #555;
+            --text-color: #444;
             --btn-color: #ff8fa3;
             --btn-hover: #ff6b85;
         }
@@ -26,9 +26,8 @@
             align-items: center;
             justify-content: center;
             font-family: 'Arial', sans-serif;
-            
-            /* Background with little hearts */
             background-color: var(--bg-color);
+            /* Background pattern */
             background-image: radial-gradient(var(--heart-color) 15%, transparent 16%),
                               radial-gradient(var(--heart-color) 15%, transparent 16%);
             background-size: 30px 30px;
@@ -36,11 +35,10 @@
             overflow: hidden;
         }
 
-        /* Container for the envelope */
         .envelope-wrapper {
             position: relative;
-            width: 300px;
-            height: 200px;
+            width: 320px; /* Made slightly wider to fit text */
+            height: 220px; /* Made slightly taller */
             margin-bottom: 50px;
         }
 
@@ -53,83 +51,85 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        /* The Triangle Flap (Top) */
         .flap {
             position: absolute;
             top: 0;
             left: 0;
             width: 0;
             height: 0;
-            border-left: 150px solid transparent;
-            border-right: 150px solid transparent;
-            border-top: 110px solid var(--flap-color); /* The closing flap */
+            border-left: 160px solid transparent;
+            border-right: 160px solid transparent;
+            border-top: 130px solid var(--flap-color);
             transform-origin: top;
             transition: transform 0.6s ease-in-out, z-index 0.6s;
             z-index: 3;
             border-radius: 10px 10px 0 0;
         }
 
-        /* The Pocket (Front face) */
         .pocket {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 0;
             height: 0;
-            border-left: 150px solid transparent;
-            border-right: 150px solid transparent;
-            border-bottom: 120px solid var(--envelope-color);
+            border-left: 160px solid transparent;
+            border-right: 160px solid transparent;
+            border-bottom: 140px solid var(--envelope-color);
             z-index: 2;
             border-radius: 0 0 10px 10px;
         }
 
-        /* The Letter inside */
         .letter {
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             width: 90%;
-            height: 90%;
+            height: 95%; /* Taller letter */
             background: var(--letter-color);
             border-radius: 5px;
-            padding: 20px;
+            padding: 15px;
             box-sizing: border-box;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             z-index: 1;
             transition: bottom 0.6s ease-in-out;
-            transition-delay: 0s; /* Default delay */
+            transition-delay: 0s;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .letter-content {
+            text-align: center;
         }
 
         .letter-content h1 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--heart-color);
-            margin-top: 0;
-            text-align: center;
+            margin: 0 0 10px 0;
+            font-weight: bold;
         }
 
         .letter-content p {
-            font-size: 0.9rem;
+            font-size: 0.85rem; /* Adjusted font size for fit */
             color: var(--text-color);
-            line-height: 1.5;
-            text-align: center;
+            line-height: 1.4;
+            margin: 5px 0;
         }
 
-        /* Animation State: OPEN */
         .envelope-wrapper.open .flap {
             transform: rotateX(180deg);
             z-index: 0;
-            transition-delay: 0s; /* Flap opens immediately */
+            transition-delay: 0s;
         }
 
         .envelope-wrapper.open .letter {
-            bottom: 120px; /* Slides up */
-            transition-delay: 0.4s; /* Waits for flap to open */
-            z-index: 4; /* Comes in front of pocket */
+            bottom: 100px; /* Adjusted slide height */
+            transition-delay: 0.4s;
+            z-index: 4;
         }
 
-        /* Controls */
         .controls {
             display: flex;
             gap: 20px;
@@ -167,9 +167,17 @@
             <div class="pocket"></div>
             <div class="letter">
                 <div class="letter-content">
-                    <h1>Hello There!</h1>
-                    <p>Hii baby 💗 , this one is for you<br>✨ Created for GitHub ✨</p>
-                    <div style="text-align: center; font-size: 20px;">❤️</div>
+                    <h1>Hiii baby 💗</h1>
+                    <p>
+                        This one is for you ✨<br>
+                        I know ki Mai Apko boht pareshan karta hun. And I really want to apologize for everything I have done wrong.
+                    </p>
+                    <p>
+                        But this time it’s going to be different. I will do everything I can to make you feel happy and loved.
+                    </p>
+                    <p style="font-weight: bold; color: #ff8fa3; margin-top: 10px;">
+                        Thank you for being my valentine 💝
+                    </p>
                 </div>
             </div>
         </div>
