@@ -2,33 +2,195 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Envelope + Letter (Open/Close on Click)</title>
-    <link rel="stylesheet" href="./style.css">
+    <title>Letter Animation</title>
+    <style>
+        :root {
+            --bg-color: #ffe6eb;
+            --envelope-color: #ffc3c3; /* Pastel Pink */
+            --envelope-shadow: #ffb3b3;
+            --flap-color: #ffcfcf;
+            --heart-color: #ff8fa3;
+            --letter-color: #ffffff;
+            --text-color: #555;
+            --btn-color: #ff8fa3;
+            --btn-hover: #ff6b85;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial', sans-serif;
+            
+            /* Background with little hearts */
+            background-color: var(--bg-color);
+            background-image: radial-gradient(var(--heart-color) 15%, transparent 16%),
+                              radial-gradient(var(--heart-color) 15%, transparent 16%);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            overflow: hidden;
+        }
+
+        /* Container for the envelope */
+        .envelope-wrapper {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            margin-bottom: 50px;
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: var(--envelope-shadow);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* The Triangle Flap (Top) */
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 110px solid var(--flap-color); /* The closing flap */
+            transform-origin: top;
+            transition: transform 0.6s ease-in-out, z-index 0.6s;
+            z-index: 3;
+            border-radius: 10px 10px 0 0;
+        }
+
+        /* The Pocket (Front face) */
+        .pocket {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 120px solid var(--envelope-color);
+            z-index: 2;
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* The Letter inside */
+        .letter {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 90%;
+            background: var(--letter-color);
+            border-radius: 5px;
+            padding: 20px;
+            box-sizing: border-box;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1;
+            transition: bottom 0.6s ease-in-out;
+            transition-delay: 0s; /* Default delay */
+            overflow: hidden;
+        }
+
+        .letter-content h1 {
+            font-size: 1.2rem;
+            color: var(--heart-color);
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .letter-content p {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        /* Animation State: OPEN */
+        .envelope-wrapper.open .flap {
+            transform: rotateX(180deg);
+            z-index: 0;
+            transition-delay: 0s; /* Flap opens immediately */
+        }
+
+        .envelope-wrapper.open .letter {
+            bottom: 120px; /* Slides up */
+            transition-delay: 0.4s; /* Waits for flap to open */
+            z-index: 4; /* Comes in front of pocket */
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        button {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            background-color: var(--btn-color);
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--btn-hover);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="envelope-wrapper">
-            <div class="envelope">
-                <div class="letter">
-                    <div class="text">
-                        <strong>Dear Person.</strong>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Numquam labore omnis minus maiores laboriosam, facere in beatae esse. 
-                        </p>
-                    </div>
+
+    <div class="envelope-wrapper" id="envelopeWrapper">
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="pocket"></div>
+            <div class="letter">
+                <div class="letter-content">
+                    <h1>Hello There!</h1>
+                    <p>This is a special letter just for you.<br>✨ Created for GitHub ✨</p>
+                    <div style="text-align: center; font-size: 20px;">❤️</div>
                 </div>
             </div>
-            <div class="heart"></div>
         </div>
     </div>
+
+    <div class="controls">
+        <button onclick="openLetter()">Open</button>
+        <button onclick="closeLetter()">Close</button>
+    </div>
+
     <script>
-        const envelope = document.querySelector('.envelope-wrapper');
-        envelope.addEventListener('click', () => {
-            envelope.classList.toggle('flap');
-        });
+        const envelope = document.getElementById('envelopeWrapper');
+
+        function openLetter() {
+            envelope.classList.add('open');
+        }
+
+        function closeLetter() {
+            envelope.classList.remove('open');
+        }
     </script>
+
 </body>
 </html>
